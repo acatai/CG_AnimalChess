@@ -1,0 +1,19 @@
+read color:word(5)
+
+gameloop
+read x1:int y1:int x2:int y2:int
+read moveCount:int
+loop moveCount read move:word(4)
+write random
+
+INPUT
+color: color of your player ("red" or "blue")
+x1: x-coordinate of a piece to move
+y1: y-coordinate of a piece to move
+x2: x-coordinate of a destination square
+y2: y-coordinate of a destination square
+moveCount: number of legal moves
+move: a legal move
+
+OUTPUT
+e.g. "1 7 1 6" (move from 1 7 to 1 6) or "random"

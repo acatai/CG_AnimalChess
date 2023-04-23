@@ -1,0 +1,203 @@
+<div id="statement_back" class="statement_back" style="display:none"></div>
+  <div class="statement-body">
+    <!-- GOAL -->
+    <div class="statement-section statement-goal">
+      <h1>
+        <span class="icon icon-goal">&nbsp;</span>
+        <span>The Game</span>
+      </h1>
+      <div class="statement-goal-content">
+        <p>This is a port of the board game <b>Animal Chess</b> (also known as <b>Jungl Game</b>, or <b>Dou Shou Qi</b>). More information about it can be found on <a target="_blank" href="https://en.wikipedia.org/wiki/Jungle_(board_game)">Wikipedia</a>.</p>
+        <!--<p>Full rules of the game are available <a href="https://marksteeregames.com/Impasse_rules.pdf">here</a>.</p>-->
+        <!--<p>The referee is available <a href="https://github.com/acatai/CG_Impasse">here</a>.</p>-->
+      </div>
+    </div>
+    <!-- RULES -->
+    <div class="statement-section statement-rules">
+      <h1>
+          <span class="icon icon-rules">&nbsp;</span>
+          <span>Rules</span>
+      </h1>
+        <div class="statement-rules-content">
+            <div style="margin-bottom: 10px">
+                The game is played on a 7x9 board with two players, Red and Blue. Each player has 8 pieces. Players take turns, starting with <b>Red</b>.
+            </div>
+            <div style="margin-bottom: 10px">
+                The goal of the game is to step with any of own pieces into a designated square, known as the opponent's <b>den</b>. If neither of the players achieve this in <const>150</const> turns, the game ends with a draw.
+            </div>
+
+            <div style="margin-bottom: 10px">
+                Squares are indicated by their <var>x y</var> coordinates, with <const>0 0</const> being the upper left corner of the board.
+            </div>
+
+            <div class="blk">
+                <!--<div class="title">Detailed rules</div>-->
+                <div class="text">
+
+                    <h3 style="font-size: 14px;font-weight: 700;padding-top: 15px;color: #838891;padding-bottom: 15px;">Pieces</h3>
+                    <div style="margin-bottom: 10px">
+                        Each player initially contains 8 animals (one of each type). Every animal (piece) has assigned strength.
+                        <ul>
+                            <li><const>Elephant</const>: strength <const>8</const>, initial position <const>0 6</const> (red), <const>6 2</const> (blue)</li>
+                            <li><const>Lion</const>: strength <const>7</const>, initial position <const>6 8</const> (red), <const>0 0</const> (blue)</li>
+                            <li><const>Tiger</const>: strength <const>6</const>, initial position <const>0 8</const> (red), <const>6 0</const> (blue)</li>
+                            <li><const>Panther</const>: strength <const>5</const>, initial position <const>4 6</const> (red), <const>2 2</const> (blue)</li>
+                            <li><const>Dog</const>: strength <const>4</const>, initial position <const>5 7</const> (red), <const>1 1</const> (blue)</li>
+                            <li><const>Wolf</const>: strength <const>3</const>, initial position <const>2 6</const> (red), <const>4 2</const> (blue)</li>
+                            <li><const>Cat</const>: strength <const>2</const>, initial position <const>1 7</const> (red), <const>5 1</const> (blue)</li>
+                            <li><const>Rat</const>: strength <const>1</const>, initial position <const>0 6</const> (red), <const>6 2</const> (blue)</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="font-size: 14px;font-weight: 700;padding-top: 15px;color: #838891;padding-bottom: 15px;">Special squares</h3>
+                    <div style="margin-bottom: 10px">
+                        There are a few special squares on the board.
+                    </div>
+                    <div style="margin-bottom: 10px">
+                        Players' <b>dens</b>: red den on <const>3 8</const> and blue den on <const>3 0</const>. Reaching opponent's den is the goal of the game.
+                    </div>
+                    <div style="margin-bottom: 10px">
+                        <b>Traps</b>, located on <const>2 0</const>, <const>4 0</const>, <const>3 1</const>, <const>2 8</const>, <const>4 8</const>, and <const>3 7</const>. Animal staying on a trap has its strength reduced to 0.
+                    </div>
+                    <div style="margin-bottom: 10px">
+                        <b>Water squares</b>, forming two rectangles, from <const> 1 3</const> to <const>2 5</const> and from <const>4 3</const> to <const>5 5</const>. Usually, they cannot be entered by a piece.
+                    </div>
+
+                    <h3 style="font-size: 14px;font-weight: 700;padding-top: 15px;color: #838891;padding-bottom: 15px;">Movement</h3>
+                    <div style="margin-bottom: 10px">
+                        Each turn consists of moving one piece one square orthogonally in any direction. Only one piece may occupy any square.
+                    </div>
+
+                    <div style="margin-bottom: 10px">
+                        Only rat can go onto a water square.
+                    </div>
+                    <div style="margin-bottom: 10px">
+                        If an animal lands on a square containing an opponent animal of equal or lower strength it captures it (the opponent piece is removed from the game).
+                    </div>
+
+                    <div style="margin-bottom: 10px">
+                        <const>Elephant</const> cannot capture <const>Rat</const>. However, <const>Rat</const> can capture <const>Elephant</const>.
+                    </div>
+
+                    <div style="margin-bottom: 10px">
+                        <const>Rat</const> cannot capture when moving from water square to a land square.
+                    </div>
+
+                    <div style="margin-bottom: 10px">
+                        An animal inside a trap square has its strength reduced to <const>0</const>, so it can be captured by any other animal.
+                    </div>
+
+                    <div style="margin-bottom: 10px">
+                        A <const>Lion</const> and <const>Tiger</const> from a square adjacent to the water can jump over the water in any orthogonal direction, landing on the nearest land square (this move may capture according to the default rules).  They may not, however,
+                        jump over a <const>Rat</const> if it is in the way, in the water
+                    </div>
+
+                    <div style="margin-bottom: 10px">
+                        A player may not move any of his animals onto his own den.
+                    </div>
+                </div>
+  </div>
+
+  <br>
+  <!-- EXPERT RULES -->
+  <!--<div class="statement-section statement-expertrules">
+    <h1>
+      <span class="icon icon-expertrules">&nbsp;</span>
+      <span>Expert Rules</span>
+    </h1>
+    <div class="statement-expert-rules-content">
+      <li>It is possible to have two singles in your furthest row (the second single via the impasse rule). Then you can choose any of them for the crown action.</li>
+    </div>
+  </div>-->
+  
+  <!-- Victory conditions -->
+  <div class="statement-victory-conditions">
+      <div class="icon victory"></div>
+      <div class="blk">
+          <div class="title">Victory Conditions</div>
+          <div class="text">
+              <ul style="padding-bottom: 0;">
+                  <li>Be the first to reach the opponent's den.</li>
+              </ul>
+          </div>
+      </div>
+  </div>
+
+  <!-- Lose conditions -->
+  <div class="statement-lose-conditions">
+      <div class="icon lose"></div>
+      <div class="blk">
+          <div class="title">Loss Conditions</div>
+          <div class="text">
+              <ul style="padding-bottom: 0;">
+                  <li>You fail to reach opposing den before the opponent.</li>
+                  <li>You do not respond in time or output an unrecognized command.</li>
+              </ul>
+          </div>
+      </div>
+  </div>
+
+      <br>
+      <div style="color: #7cc576;
+                    background-color: rgba(124, 197, 118,.1);
+                    padding: 15px;">
+          <p style="text-align:center"><b>Acknowledgments</b></p>
+          <p>This contribution was developed for the dr. Paweł Rychlikowski course <i><b>Artificial Intelligence</b></i>, University of Wrocław, 2023.</p>
+          <p>Authored by <i><b>Jakub Kowalski</b></i> (<a target="_blank" href="https://www.codingame.com/profile/b528dd3b279d7578674a1129305918e0400484">@aCat</a>).</p>
+          <p>Some images taken from <b>A4 Games</b> <a target="_blank" href="https://a4gamescompany.wordpress.com/">web site</a>. </p>
+      </div>
+      <br>
+
+  <!-- PROTOCOL -->
+  <div class="statement-section statement-protocol">
+      <h1>
+      <span class="icon icon-protocol">&nbsp;</span>
+      <span>Game Input/Output</span>
+  </h1>
+
+    <!-- Protocol block -->
+    <div class="blk">
+      <div class="title">Initial input</div>
+      <div class="text">
+          <span class="statement-lineno">One line</span>: <var>color</var></span>: the color of your pieces (<const>red</const> for the starting player and <const>blue</const> for the second one).
+      </div>
+    </div>
+
+    <div class="blk">
+      <div class="title">Input for one game turn</div>
+      <div class="text">
+        <span class="statement-lineno">First line: <var>x1</var> <var>y1</var> <var>x2</var> <var>y2</var></span>: the last move made by the opponent, indicating moving a piece from <var>x1 y1</var> to <var>x2 y2</var> ("<const>-1 -1 -1 -1</const>" if this is the first turn).
+        </br>
+        <br>
+         <span class="statement-lineno">Next line: <var>moveCount</var></span>: the number of legal moves for this turn.
+        </br>
+        <br>
+          <span class="statement-lineno">Next <var>moveCount</var> lines</span>: <var>move</var>: a string of characters representing a legal move.
+        </br>      
+          </div>
+    </div>
+
+    <!-- Protocol block -->
+    <div class="blk">
+      <div class="title">Output</div>
+      <div class="text">
+         <span class="statement-lineno">A single line</span> describing your move in a form <var>x1</var> <var>y1</var> <var>x2</var> <var>y2</var>, indicating moving a piece from <var>x1 y1</var> to <var>x2 y2</var>
+          <ul>
+              <li>You can display a (short) comment in the viewer by adding a space after the move and writing its content, e.g. "<const>1 7 1 6 message</const>".</li>
+              <li>Comments can contain new line characters in the form of "<const>\\n</const>".</li>
+              <li>You can play a random move by outputting "<const>random</const>" instead of a move. This is admittedly only useful for stub code generation.</li>
+          </ul>
+        <br>
+      </div>
+    </div>
+
+    <!-- Protocol block -->
+    <div class="blk">
+      <div class="title">Constraints</div>
+        Response time first turn is ≤
+        <const>1000</const> ms.
+        <br>Response time per turn is ≤
+        <const>150</const> ms.
+      </div>
+  </div>
+</div>
