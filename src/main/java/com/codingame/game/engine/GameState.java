@@ -52,8 +52,6 @@ public class GameState
   public GameState copy() // todo??
   {
     GameState s = new GameState();
-//    for (int p=0; p <2; p++) s.singles[p] = new ArrayList<>(this.singles[p]);
-//    for (int p=0; p <2; p++) s.doubles[p] = new ArrayList<>(this.doubles[p]);
     return s;
   }
 
@@ -126,7 +124,7 @@ public class GameState
       System.err.println(Action.toString(action));
     }
 
-    manager.addToGameSummary(player.getNicknameToken() + " moved " + u.get().toNameString()+ " from " + toStr(xy) + " to " + toStr(xy2)+(op.isPresent()? (" (capturing "+op.get().toNameString()+")."):"."));
+    manager.addToGameSummary(player.getNicknameToken() + " moved " + u.get().toNameString()+ " from " + X(xy)+" "+Y(xy) + " to " + X(xy2)+" "+Y(xy2)+(op.isPresent()? (" (capturing "+op.get().toNameString()+")."):"."));
   }
 
   public static String toStr(int x, int y)

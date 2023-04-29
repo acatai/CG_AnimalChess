@@ -44,12 +44,10 @@ public class Viewer
 
         this.graphics.createRectangle().setWidth(VIEWER_WIDTH).setHeight(VIEWER_HEIGHT).setFillColor(BACKGROUNDCOLOR);
 
-
         int boardsize = VIEWER_HEIGHT-2*VIEWER_MARGIN;
         graphics.createSprite().setImage("board2.png").setX((VIEWER_WIDTH-boardsize)/2).setY(VIEWER_MARGIN).setZIndex(Z_BOARD).setBaseWidth(boardsize).setBaseHeight(boardsize);
         graphics.createSprite().setImage("traps.png").setX((VIEWER_WIDTH-boardsize)/2).setY(VIEWER_MARGIN).setZIndex(Z_TRAP).setBaseWidth(boardsize).setBaseHeight(boardsize);
         graphics.createSprite().setImage("dens.png").setX((VIEWER_WIDTH-boardsize)/2).setY(VIEWER_MARGIN).setZIndex(Z_DEN).setBaseWidth(boardsize).setBaseHeight(boardsize);
-
 
         int START_X = 595;
         int START_Y = 72;
@@ -119,12 +117,11 @@ public class Viewer
     }
 
 
-
     public void initUnitSprite(Unit u)
     {
         u.sprite = graphics.createSprite().setImage(u.toTextureString()+".png").setZIndex(Z_UNIT).setBaseWidth(VIEWER_RECTANGLE_SIZE-2*VIEWER_UNIT_MARGIN).setBaseHeight(VIEWER_RECTANGLE_SIZE-2*VIEWER_UNIT_MARGIN);
         MoveUnitToXY(u, u.xy);
-        tooltipModule.setTooltipText(u.sprite, u.toNameString() );
+        tooltipModule.setTooltipText(u.sprite, u.toNameStringWithStrength() );
     }
 
     private Rectangle getRectangle(int xy)
@@ -136,6 +133,7 @@ public class Viewer
     {
         u.sprite.setZIndex(Z_UNIT_CAPTURING);
         graphics.commitEntityState(0, u.sprite);
+        tooltipModule.setTooltipText(u.sprite, u.toNameStringWithStrength() );
         u.sprite.setX(getRectangle(xy2).getX()+VIEWER_UNIT_MARGIN).setY(getRectangle(xy2).getY()+VIEWER_UNIT_MARGIN).setZIndex(Z_UNIT);
         graphics.commitEntityState(1, u.sprite);
     }
@@ -146,9 +144,6 @@ public class Viewer
         u.sprite.setVisible(false);
         graphics.commitEntityState(1, u.sprite);
     }
-
-
-
 
     public void showHUDFrame(int p)
     {

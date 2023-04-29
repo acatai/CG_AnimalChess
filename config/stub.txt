@@ -3,7 +3,7 @@ read color:word(5)
 gameloop
 read x1:int y1:int x2:int y2:int
 read moveCount:int
-loop moveCount read move:word(4)
+loop moveCount read move:string(16)
 write random
 
 INPUT

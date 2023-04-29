@@ -64,4 +64,9 @@ public class Unit
     return PLAYER_NAMES[faction]+" "+type.name();
   }
 
+  public java.lang.String toNameStringWithStrength()
+  {
+    return PLAYER_NAMES[faction]+" "+type.name() + " ("+( GameState.traps.contains(xy)? 0 :type.ordinal()+1)+")";
+  }
+
 }

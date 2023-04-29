@@ -7,9 +7,10 @@
         <span>The Game</span>
       </h1>
       <div class="statement-goal-content">
-        <p>This is a port of the board game <b>Animal Chess</b> (also known as <b>Jungl Game</b>, or <b>Dou Shou Qi</b>). More information about it can be found on <a target="_blank" href="https://en.wikipedia.org/wiki/Jungle_(board_game)">Wikipedia</a>.</p>
+        <p>This is a port of the board game <b>Animal Chess</b> (also known as the <b>Jungle Game</b>, or <b>Dou Shou Qi</b>).
+            <!--More information about it can be found on  <a target="_blank" href="https://en.wikipedia.org/wiki/Jungle_(board_game)">Wikipedia</a>, and <a target="_blank" href="https://www.chessvariants.com/other.dir/animal.html">Chess Variant Pages</a>.</p>-->
         <!--<p>Full rules of the game are available <a href="https://marksteeregames.com/Impasse_rules.pdf">here</a>.</p>-->
-        <!--<p>The referee is available <a href="https://github.com/acatai/CG_Impasse">here</a>.</p>-->
+        -<p>The referee is available <a href="https://github.com/acatai/CG_AnimalChess">here</a>.</p>
       </div>
     </div>
     <!-- RULES -->
@@ -45,7 +46,7 @@
                             <li><const>Dog</const>: strength <const>4</const>, initial position <const>5 7</const> (red), <const>1 1</const> (blue)</li>
                             <li><const>Wolf</const>: strength <const>3</const>, initial position <const>2 6</const> (red), <const>4 2</const> (blue)</li>
                             <li><const>Cat</const>: strength <const>2</const>, initial position <const>1 7</const> (red), <const>5 1</const> (blue)</li>
-                            <li><const>Rat</const>: strength <const>1</const>, initial position <const>0 6</const> (red), <const>6 2</const> (blue)</li>
+                            <li><const>Rat</const>: strength <const>1</const>, initial position <const>6 6</const> (red), <const>0 2</const> (blue)</li>
                         </ul>
                     </div>
 
@@ -57,7 +58,7 @@
                         Players' <b>dens</b>: red den on <const>3 8</const> and blue den on <const>3 0</const>. Reaching opponent's den is the goal of the game.
                     </div>
                     <div style="margin-bottom: 10px">
-                        <b>Traps</b>, located on <const>2 0</const>, <const>4 0</const>, <const>3 1</const>, <const>2 8</const>, <const>4 8</const>, and <const>3 7</const>. Animal staying on a trap has its strength reduced to 0.
+                        <b>Traps</b>, located on <const>2 0</const>, <const>4 0</const>, <const>3 1</const>, <const>2 8</const>, <const>4 8</const>, and <const>3 7</const>. Animal staying on a trap has its strength temporarily reduced to 0.
                     </div>
                     <div style="margin-bottom: 10px">
                         <b>Water squares</b>, forming two rectangles, from <const> 1 3</const> to <const>2 5</const> and from <const>4 3</const> to <const>5 5</const>. Usually, they cannot be entered by a piece.
@@ -84,7 +85,7 @@
                     </div>
 
                     <div style="margin-bottom: 10px">
-                        An animal inside a trap square has its strength reduced to <const>0</const>, so it can be captured by any other animal.
+                        An animal inside a trap square has its strength temporarily reduced to <const>0</const>, so it can be captured by any other animal.
                     </div>
 
                     <div style="margin-bottom: 10px">
