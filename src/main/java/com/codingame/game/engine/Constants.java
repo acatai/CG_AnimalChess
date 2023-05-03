@@ -73,8 +73,7 @@ public class Constants
   public static final ArrayList<Integer>[] MOVES_GROUND = new ArrayList[10*10];
   public static final ArrayList<Integer>[] MOVES_ALL = new ArrayList[10*10];
 
-  public static final HashMap<Integer, Integer> JUMP_TARGETS= new HashMap<>();
-  public static final HashMap<Integer, ArrayList<Integer>> JUMP_WAY= new HashMap<>();
+  public static final HashMap<Integer, HashMap<Integer, ArrayList<Integer>>> JUMPS= new HashMap<>();
 
 
   public static void pregenerateMovements()
@@ -99,24 +98,33 @@ public class Constants
       }
     }
 
+    HashMap<Integer, ArrayList<Integer>> tmp;
+
     for (int x : new int[] {1, 2, 4, 5})
     {
-      JUMP_TARGETS.put(XY(x, 2), XY(x, 6));
-      JUMP_WAY.put(XY(x, 2), new ArrayList<Integer>() {{ add(XY(x,3)); add(XY(x,4)); add(XY(x,5)); }});
-      JUMP_TARGETS.put(XY(x, 6), XY(x, 2));
-      JUMP_WAY.put(XY(x, 6), new ArrayList<Integer>() {{ add(XY(x,3)); add(XY(x,4)); add(XY(x,5)); }});
+      tmp = new HashMap<>();
+      tmp.put(XY(x, 6), new ArrayList<Integer>() {{ add(XY(x,3)); add(XY(x,4)); add(XY(x,5)); }});
+      JUMPS.put(XY(x, 2), tmp);
+
+      tmp = new HashMap<>();
+      tmp.put(XY(x, 2), new ArrayList<Integer>() {{ add(XY(x,3)); add(XY(x,4)); add(XY(x,5)); }});
+      JUMPS.put(XY(x, 6), tmp);
     }
 
     for (int y : new int[] {3, 4, 5})
     {
-      for (int x : new int[] {0, 3})
-      {
-        JUMP_TARGETS.put(XY(x, y), XY(x+3, y));
-        JUMP_WAY.put(XY(x, y), new ArrayList<Integer>() {{ add(XY(x+1,y)); add(XY(x+2,y)); }});
-        JUMP_TARGETS.put(XY(x+3, y), XY(x, y));
-        JUMP_WAY.put(XY(x+3, y), new ArrayList<Integer>() {{ add(XY(x+1,y)); add(XY(x+2,y)); }});
-      }
-    }
+      tmp = new HashMap<>();
+      tmp.put(XY(3, y), new ArrayList<Integer>() {{ add(XY(1,y)); add(XY(2,y)); }});
+      JUMPS.put(XY(0, y), tmp);
 
+      tmp = new HashMap<>();
+      tmp.put(XY(3, y), new ArrayList<Integer>() {{ add(XY(4,y)); add(XY(5,y)); }});
+      JUMPS.put(XY(6, y), tmp);
+
+      tmp = new HashMap<>();
+      tmp.put(XY(0, y), new ArrayList<Integer>() {{ add(XY(1,y)); add(XY(2,y)); }});
+      tmp.put(XY(6, y), new ArrayList<Integer>() {{ add(XY(4,y)); add(XY(5,y)); }});
+      JUMPS.put(XY(3, y), tmp);
+    }
   }
 }

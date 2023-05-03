@@ -5,6 +5,7 @@ import com.codingame.gameengine.core.GameManager;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Optional;
 
 import static com.codingame.game.engine.Constants.*;
@@ -68,13 +69,15 @@ public class GameState
       for (int xy2: u.type== Unit.UType.Rat ? MOVES_ALL[u.xy] :  MOVES_GROUND[u.xy])
         verifyActionTarget(actions, player, xy2, u);
 
-      if ((u.type== Unit.UType.Tiger || u.type== Unit.UType.Lion) && JUMP_TARGETS.containsKey(u.xy) )
+      if ((u.type== Unit.UType.Tiger || u.type== Unit.UType.Lion) && JUMPS.containsKey(u.xy) )
       {
-        //System.err.println("jump " + u.xy + " " + JUMP_TARGETS.get(u.xy));
-        if (units.stream().filter(o -> JUMP_WAY.get(u.xy).contains(o.xy)).findFirst().isPresent()) continue; // cannot jump over a piece
-        verifyActionTarget(actions, player, JUMP_TARGETS.get(u.xy), u);
+        for (Map.Entry<Integer, ArrayList<Integer>> jump:JUMPS.get(u.xy).entrySet())
+        {
+          //System.err.println("jump " + u.xy + " " + jump.getKey());
+          if (units.stream().filter(o -> jump.getValue().contains(o.xy)).findFirst().isPresent()) continue; // cannot jump over a piece
+          verifyActionTarget(actions, player, jump.getKey(), u);
+        }
       }
-
     }
     return actions;
   }
